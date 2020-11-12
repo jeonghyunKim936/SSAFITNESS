@@ -1,0 +1,63 @@
+user(회원)
+- user_id: 	회원 id번호
+- nickname: 	닉네임
+- email:		이메일(아이디)
+- password:	비밀번호
+- height:		키
+- weight: 	몸무게
+- gender: 	성별(m/w)
+- point: 		랭킹점수
+
+pt(pt 게시판)
+- pt_id:		pt id번호
+- pt_name:	작성자 닉네임
+- pt_title: 	pt 타이틀
+- pt_type: 	pt 타입(부위)
+- pt_like:		pt 좋아요 수
+- pt_movie: 	pt 영상 링크
+- pt_content: 	pt 내용글
+- pt_date:  	pt 작성날짜
+
+pt_comment(예정)
+
+guide(헬스가이드 게시판)
+- guide_id: 	가이드 id번호
+- guide_name: 	작성자 닉네임
+- guide_title: 	가이드 타이틀
+- guide_type: 	가이드 타입(부위)
+- guide_like: 	가이드 좋아요 수
+- guide_movie: 	가이드 영상 링크
+- guide_date: 	가이드 작성 날짜
+
+diary(헬스 다이어리, 하루) 
+- diary_id: 	다이어리 id번호(PK) 1
+- diary_date: 	다이어리 작성 날짜 (년월일) 20200101
+- exercise_start:	운동 시작 시간(시간분)
+- exercise_end:	운동 종료 시간
+- diary_like:	운동 만족도(0:초기값)
+- diary_comment:	다이어리 댓글
+- user_id: 	작성자 id번호(FK)
+
+1:N
+
+exercise(운동, ex 벤치)
+- exercise_id:	운동 id(PK)
+- exercise_type:	운동 타입(ex. 상체, 하체)
+- exercise_name:	운동 이름
+- exercise_weight:	무게
+- exercise_reps:	횟수
+- exercise_set:	세트수
+- diary_id: 	다이어리 id번호(FK)
+
+1. 년, 월에 대한 운동시간
+2. 년, 월에 대한 운동 시간대(시작)
+3. 년, 월에 대한 운동시간
+
+
+그밖의 나머지도 우선순위를 두고 제작 예정
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+/* #ptUpdating > .title-group > label {
+    position: static;
+    pointer-events: auto;
+    color: black;
+  }
+  #input-title {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  #ptUpdating > .content-group > label {
+    position: static;
+    pointer-events: auto;
+    color: black;
+  }
+  #input-content {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  #input-video {
+    border: none;
+    background-color: #eee;
+    padding-left: 0px;
+  }
+  .ptUpdatingBtn {
+    background-color: gray;
+    color: white;
+    border: 0;
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 4px;
+  } */

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.DiaryMapper">
+
+<!-- resultMap, PK컬럼은 id 태그로 표시해줌 -->
+
+<!-- User 조회  -->
+<select id="monthList" resultType = "Diary">
+	select * from diary where diary_year = #{year} and diary_month = #{month}
+</select>
+
+<select id="select" resultType = "Diary">
+	select * from diary where diary_year = #{year} and diary_month = #{month} and diary_day = #{day} limit 1;
+</select>
+
+<select id="selectExercise" resultType = "Exercise">
+	select * from exercise where diary_id = #{diary_id};
+</select>
+
+<select id="takeDiaryId" resultType = "Integer">
+	select diary_id from diary where diary_year = #{year} and diary_month = #{month} and diary_day = #{day} limit 1;
+</select>
+
+<select id="insert" parameterType = "Diary">
+	insert into diary values (diary_id,#{diary_year}, #{diary_month}, #{diary_day}, #{exercise_start}, #{exercise_end}, #{diary_like}, #{diary_comment}, "admin")
+</select>
+
+<select id = "insertExercise" parameterType = "Exercise">
+	insert into exercise values (exercise_id,#{exercise_type},#{exercise_name},#{exercise_weight},#{exercise_raps},#{exercise_set},#{diary_id})
+</select>
+
+<select id="modify" parameterType = "Diary">
+	update diary set exercise_start=#{exercise_start}, exercise_end=#{exercise_end}, diary_like=#{diary_like}, diary_comment=#{diary_comment} where user_id="admin" and diary_year = #{diary_year} and diary_month = #{diary_month} and diary_day = #{diary_day}
+</select>
+
+<select id="delete" parameterType = "int">
+	delete  from diary where diary_year = #{year} and diary_month = #{month} and diary_day = #{day}
+</select>
+
+<select id="deleteExercise" parameterType = "int">
+	delete A, B  from diary as A INNER JOIN exercise as B ON A.diary_id = B.diary_id where A.diary_year = #{diary_year} and A.diary_month = #{diary_month} and A.diary_day = #{diary_day};
+</select>
+
+</mapper>

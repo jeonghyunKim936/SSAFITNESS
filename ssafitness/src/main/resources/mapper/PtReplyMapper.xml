@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.PtReplyMapper">
+
+<!-- resultMap, PK컬럼은 id 태그로 표시해줌 -->
+
+<!-- User 조회  -->
+<select id="insert" parameterType = "PtReply">
+	insert into pt_reply values (reply_id,#{pt_id},#{nickname}, #{content}, #{like}, sysdate(),null,0)
+</select>
+
+<select id="updateCheckedLike">
+	update pt_reply set checkedLike = #{checkedLike} where reply_id =#{reply_id}
+</select>
+
+<select id="replyLikeList" resultType = "String">
+	select nickname from pt_reply_like where reply_id = #{reply_id}
+</select>
+
+<select id="replyLikeInsert" resultType = "String">
+	insert into pt_reply_like values(pt_reply_like_id, #{reply_id}, #{nickname})
+</select>
+
+<select id ="replyLikeDelete" resultType = "String">
+	delete from pt_reply_like where reply_id = #{reply_id} and nickname = #{nickname}
+</select>
+
+<select id ="replyUpdatePlus">
+	UPDATE pt_reply SET `like` = `like` + 1 WHERE reply_id = #{reply_id};
+</select>
+
+<select id ="replyUpdateMinus">
+	UPDATE pt_reply SET `like` = `like` - 1 WHERE reply_id = #{reply_id};
+</select>
+
+
+<select id="insertMovie" parameterType = "PtReply">
+	insert into pt_reply values (reply_id,#{pt_id},#{nickname}, #{content}, #{like}, sysdate(), #{reply_movie},0)
+</select>
+
+<!-- <select id="bestList" resultType="PtReply" parameterType = "int" >
+	select * from pt_reply where pt_id = #{pt_id} order by `like` desc limit 1 
+</select> -->
+
+<!-- <select id="replyList" resultType="PtReply" parameterType = "int" >
+	select * from pt_reply where pt_id = #{pt_id}
+</select> -->
+
+<select id="bestList" resultType="PtReply" parameterType = "int" >
+	select a.* , b.grade from pt_reply a inner join `user` b on a.nickname = b.nickname where pt_id = #{pt_id} order by `like` desc limit 1 
+</select>
+
+<select id="replyList" resultType="PtReply" parameterType = "int" >
+	select a.* , b.grade from pt_reply a inner join `user` b on a.nickname = b.nickname where pt_id = #{pt_id}
+</select>
+
+<select id="modify">
+	update pt_reply set content = #{content} where reply_id = #{reply_id}
+</select>
+
+<select id="delete">
+	delete from pt_reply where reply_id = #{reply_id}
+</select>
+</mapper>

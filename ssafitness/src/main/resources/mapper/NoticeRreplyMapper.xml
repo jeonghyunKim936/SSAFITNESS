@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.NoticeReplyMapper">
+
+	<!-- User 조회 -->
+	<select id="replyList" resultType="NoticeReply"
+		parameterType="int">
+		select * from notice_reply 
+		where noticeNo = #{noticeNo}
+		<!-- 역순
+			order by replyDate desc
+		 -->
+	</select>
+
+	<!-- reply 추가 -->
+	<select id="add" parameterType="NoticeReply">
+		insert into notice_reply(noticeNo, nickname, replyContent)
+		values (#{noticeNo}, #{nickname}, #{replyContent})
+	</select>
+
+	<!-- reply 삭제 -->
+	<delete id="delete">
+		delete from notice_reply 
+		where replyNo = #{replyNo}
+	</delete>
+	
+	<!-- QnA 수정/업데이트 -->
+	<update id="modify">
+		update notice_reply 
+		set replyContent = #{replyContent} 
+		where replyNo = #{replyNo}
+	</update>
+
+</mapper>

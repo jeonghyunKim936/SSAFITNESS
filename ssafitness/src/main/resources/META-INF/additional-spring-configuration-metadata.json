@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "ssafy.expmin",
+    "type": "java.lang.String",
+    "description": "A description for 'ssafy.expmin'"
+  },
+  {
+    "name": "jwt.salt",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.salt'"
+  },
+  {
+    "name": "jwt.expmin",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.expmin'"
+  }
+]}

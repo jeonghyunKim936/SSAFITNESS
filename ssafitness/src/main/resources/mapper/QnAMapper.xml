@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.QnAMapper">
+
+	<!-- resultMap, PK컬럼은 id 태그로 표시해줌 -->
+
+	<!-- User 조회 -->
+	<select id="qnaList" resultType="QnA">
+		select * from qna order by qnaDate desc
+	</select>
+
+	<!-- QnA 검색 -->
+	<select id="search" resultType='QnA'>
+		select * from qna 
+		<!--where #{type} like CONCAT('%',#{keyword},'%')-->
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="type.equals('title')">
+				 qnaTitle like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type.equals('content')">
+				 qnaContent like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type.equals('name')">
+				 qnaName like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		order by qnaDate desc
+	</select>
+
+	<!-- QnA 추가 -->
+	<select id="add">
+		insert into qna(qnaName, qnaTitle, qnaContent)
+		values ( #{qnaName}, #{qnaTitle}, #{qnaContent})
+	</select>
+
+	<!-- QnA 삭제 -->
+	<delete id="delete">
+		delete from qna
+		where qnaNo = #{qnaNo}
+	</delete>
+
+	<!-- QnA 수정/업데이트 -->
+	<update id="modify">
+		update qna
+		set qnaTitle= #{qnaTitle}, qnaContent= #{qnaContent}
+		where qnaNo = #{qnaNo}
+	</update>
+	
+	<!-- QnA 상세보기 -->
+	<select id="selectOne" resultType="QnA">
+		select qnaNo, qnaTitle , qnaContent , qnaName, qnaDate
+		from qna
+		where qnaNo = #{qnaNo}
+	</select>
+
+</mapper>

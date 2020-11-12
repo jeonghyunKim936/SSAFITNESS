@@ -1,0 +1,10 @@
+amazonProperties:
+   endpointUrl: https://s3.ap-northeast-2.amazonaws.com
+   accessKey: AKIA37YAFHHTQU6HKYVS
+   secretKey: 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
+   bucketName: ssafitness-bucket
+spring:
+ servlet:
+  multipart:
+   max-file-size: 200MB
+   max-request-size: 200MB

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.GuideMapper">
+
+<!-- resultMap, PK컬럼은 id 태그로 표시해줌 -->
+
+<!-- User 조회  -->
+<select id="guideList" resultType="Guide">
+	select * from guide
+</select>
+
+<select id="partList" resultType="Guide" parameterType = "String">
+	select * from guide where guide_type = #{part}
+</select>
+</mapper>

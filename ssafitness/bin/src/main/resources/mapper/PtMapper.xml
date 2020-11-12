@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.PtMapper">
+
+<!-- resultMap, PK컬럼은 id 태그로 표시해줌 -->
+
+
+
+<!-- pt 추가 -->
+<insert id="insertPt" parameterType="pt">
+	insert into
+	pt(nickname,pt_title,pt_content,pt_type,pt_movie,pt_date)
+	values(#{nickname},#{pt_title},#{pt_content},#{pt_type},#{pt_movie}, now())
+	
+</insert>
+<!-- id로  moive값 조회 -->
+<select id="findMovieById" parameterType="String" resultType="String">
+	select pt_movie from pt where pt_id = #{pt_id}
+</select>
+
+
+<delete id="deletePt" parameterType="String">
+	delete from pt where pt_id = #{pt_id}
+</delete> 
+
+</mapper>
